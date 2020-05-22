@@ -24,7 +24,7 @@ OTHER_OBJS += $(RTS_OBJS)
 include $(ARDUINO_MAKEFILE_PATH)
 
 %.c: %.idr
-	idris -S --codegen C $< -o $@
+	idris -p contrib -S --codegen C $< -o $@
 
 # Idris rts files
 $(OBJDIR)/rts/%.o: $(IDRIS_RTS_PATH)/%.c $(COMMON_DEPS) | $(OBJDIR)
