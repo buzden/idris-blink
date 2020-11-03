@@ -24,6 +24,12 @@ prim_delay : Int -> PrimIO Unit
 delay : HasIO io => Int -> io Unit
 delay = primIO . prim_delay
 
+%foreign "C:printAllocMem,memi"
+prim_printAllocMem : PrimIO Unit
+
+printAllocMem : HasIO io => io Unit
+printAllocMem = primIO prim_printAllocMem
+
 forever : Monad f => f a -> f b
 forever x = do x; forever x
 
@@ -32,8 +38,11 @@ blink pin t = do digitalWrite pin 1
                  delay t
                  digitalWrite pin 0
                  delay t
+                 printAllocMem
 
 main : IO ()
 main =
   do pinMode 13 1
+     pinMode 6 1
+     blink 6 500
      forever $ blink 13 300
