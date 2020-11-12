@@ -24,7 +24,7 @@ endif
 
 build/exec/%.c: %.idr
 	rm -f "$@"
-	echo ":compile $(basename $(notdir "$@")) main" | CC=true idris2 --codegen refc "$<"
+	echo ":compile $(basename $(notdir "$@")) main" | CC=true idris2 -p contrib --codegen refc "$<"
 	sed -i 's/Value \*mainExprVal/init();\n   Value *mainExprVal/' "$@"
 	sed -i 's|// add header(s) for library: libarduino|#include "Arduino.h"|' "$@"
 
