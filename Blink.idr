@@ -1,1 +1,1 @@
-Arduino/Tests/Coop/BlinkCoopRaw.idr
+Tests/Arduino/ByRaw/Blink_Coop_Single.idr
